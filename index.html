@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Prevent scrolling outside the gallery */
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory; /* Enable snap scrolling */
+  height: 100vh;
+}
+
+.gallery-item {
+  flex: 0 0 100vh;
+  width: 100%;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start; /* Snap item to the top */
+}
+
+.gallery-item img {
+  max-width: 100vw;
+  max-height: 100vh;
+    width: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; 
+  margin:0 auto;
+}
+
+.gallery-item p {
+  font-size: 1.8rem;
+  padding: 20px;
+  text-align: center;
+}
+
+.chevron {
+  position: fixed; /* Keeps the chevron fixed at the bottom of the viewport */
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  padding: 5px 10px;
+}
+
+.chevron:hover {
+  background-color: rgba(200, 200, 200, 0.9);
+}
+
+</style>
+  
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZACH</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="gallery" onscroll="checkScrollPosition()">
+    <div class="gallery-item">
+      <img src="/boys%20cards%20h1.jpg" alt="Image 1">
+    </div>
+    <div class="gallery-item">
+ <p>We were all set to mail these cards to you, but then the Canadian Postal Workers went on strike. (Fuckers!)</p>
+      <p>So you'll have to make to with photos instead.</p>
+    </div>
+<div class="gallery-item">
+      <img src="/boys%20cards%20h2.jpg" alt="Image 2">
+    </div>
+      <div class="gallery-item">
+      <img src="/boys%20cards%20h3.jpg" alt="Image 2">
+    </div>
+      <div class="gallery-item">
+      <img src="/boys%20cards%20h4.jpg" alt="Image 2">
+    </div>
+       <div class="gallery-item">
+      <img src="/cash.png" alt="Image 2">
+          <p style="max-width: 8ch;
+    text-align: left;
+    position: absolute;
+    left: 0;
+    top: 375px;">And here's a picture of the money we were going to send you.</p>
+    </div>
+  </div>
+  <div class="chevron" id="chevron" onclick="scrollToNext()">
+    &#x25BC; <!-- Down chevron symbol -->
+  </div>
+  
+  
+  
+ <script>
+    function scrollToNext() {
+      const gallery = document.querySelector('.gallery');
+      const currentScroll = gallery.scrollTop;
+      const viewportHeight = window.innerHeight;
+      gallery.scrollTo({
+        top: currentScroll + viewportHeight,
+        behavior: 'smooth'
+      });
+    }
+
+    function checkScrollPosition() {
+      const gallery = document.querySelector('.gallery');
+      const chevron = document.getElementById('chevron');
+      const totalScroll = gallery.scrollHeight - gallery.clientHeight; // Total scrollable height
+      const currentScroll = gallery.scrollTop;
+
+      if (currentScroll >= totalScroll - 1) { // User is at the bottom
+        chevron.style.display = 'none';
+      } else {
+        chevron.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
